@@ -41,6 +41,7 @@ export const vpnListUrl = '/network/vpn';
 export const lbListUrl = '/network/load-balancers';
 export const topologyUrl = '/network/topo';
 export const securityGroupListUrl = '/network/security-group';
+export const firewallListUrl = '/network/firewall';
 
 // management
 export const recycleBinListUrl = '/management/recycle-bin';
@@ -62,8 +63,8 @@ export const settingUrl = '/configuration-admin/setting';
 export const stackListUrl = '/heat/stack';
 
 // zun
-export const zunContainerListUrl = '/container/containers';
-export const zunCapsuleListUrl = '/container/capsules';
+export const zunContainerListUrl = '/container-service/containers';
+export const zunCapsuleListUrl = '/container-service/capsules';
 
 // manila
 export const shareTypeListUrl = '/share/share-type-admin';
@@ -86,9 +87,8 @@ export default {
   networkQosPolicy: policyListUrl,
   fip: fipListUrl,
   port: portListUrl,
-
-  // security
   securityGroup: securityGroupListUrl,
+  firewall: firewallListUrl,
 
   // identity
   project: projectListUrl,

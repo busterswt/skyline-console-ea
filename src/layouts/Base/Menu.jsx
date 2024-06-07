@@ -20,9 +20,12 @@ import { toJS } from 'mobx';
 import { isString, isEqual } from 'lodash';
 import classnames from 'classnames';
 import { getPath } from 'utils/route-map';
+import i18n from 'core/i18n';
 import styles from './index.less';
 
 const { SubMenu } = Menu;
+
+const { getLocaleShortName } = i18n;
 
 export class LayoutMenu extends Component {
   constructor(props) {
@@ -32,7 +35,8 @@ export class LayoutMenu extends Component {
       hover: false,
       openKeys: [],
     };
-    this.maxTitleLength = 17;
+    const shortName = getLocaleShortName();
+    this.maxTitleLength = shortName === 'zh' ? 9 : 17;
   }
 
   componentDidMount() {
@@ -154,22 +158,24 @@ export class LayoutMenu extends Component {
           className={styles['menu-item']}
           onClick={this.onClickMenuItem}
         >
-          {/* <Menu.Item key={item.key} className={styles['menu-item-no-child']}> */}
-          {this.renderMenuItemIcon({ item, isSubMenu })}
-          <span
-            className={
-              item.level === 0 || (item.level === 1 && !showChildren)
-                ? styles['menu-item-title']
-                : styles['sub-menu-item-title']
-            }
-          >
-            {item.name.length >= this.maxTitleLength ? (
-              <Tooltip title={item.name} placement="right">
-                {item.name}
-              </Tooltip>
-            ) : (
-              item.name
-            )}
+          <span className={styles['menu-item-title-wrapper']}>
+            {/* <Menu.Item key={item.key} className={styles['menu-item-no-child']}> */}
+            {this.renderMenuItemIcon({ item, isSubMenu })}
+            <span
+              className={
+                item.level === 0 || (item.level === 1 && !showChildren)
+                  ? styles['menu-item-title']
+                  : styles['sub-menu-item-title']
+              }
+            >
+              {item.name.length >= this.maxTitleLength ? (
+                <Tooltip title={item.name} placement="right">
+                  {item.name}
+                </Tooltip>
+              ) : (
+                item.name
+              )}
+            </span>
           </span>
         </Menu.Item>
       );
