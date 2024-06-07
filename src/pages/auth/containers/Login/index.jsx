@@ -69,7 +69,7 @@ export class Login extends Component {
   }
 
   get productName() {
-    const { product_name = { zh: t('Cloud Platform'), en: 'EA Cloud' } } =
+    const { product_name = { zh: t('Cloud Platform'), en: 'OpenStack Flex' } } =
       this.info;
     const { getLocaleShortName } = i18n;
     const language = getLocaleShortName();
